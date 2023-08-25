@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "FagRV0o/IarAumvfVhNCZGxAOl1Q2fFM9+jtKXxoWdiCmWxsscZ1seDJMauJzqEa5Fo1RtrJa/7Z9lMRa9fBgQ==",
+  "success": true,
+  "projectFilePath": "D:\\dot.net project\\Efarming_2\\Efarming_2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pratik\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\pratik\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\pratik\\.nuget\\packages\\mysqlconnector\\2.2.7\\mysqlconnector.2.2.7.nupkg.sha512",
+    "C:\\Users\\pratik\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\pratik\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\pratik\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\pratik\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
