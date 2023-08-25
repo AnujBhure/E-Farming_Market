@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import Admin from "./Admin";
 function Wholesalers() {
     const [data, setdata] = useState([]);
     const [loading, setLoading] = useState(true);

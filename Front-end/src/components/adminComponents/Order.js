@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Admin from "./Admin";
 import { useEffect } from "react";
 function Order() {
     const [data, setdata] = useState([]);
