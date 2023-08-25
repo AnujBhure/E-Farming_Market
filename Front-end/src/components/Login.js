@@ -20,7 +20,7 @@ const reducer=(state,action)=>{
 let LoginPage = () => {  
 
   const[user, dispatch] = useReducer(reducer , iniState );
-  // const [msg,setMsg] = useState('');
+  const [msg,setMsg] = useState('');
   const navigate=useNavigate();
 
   const handleChange=(name,value)=>{
@@ -43,7 +43,7 @@ let LoginPage = () => {
     let error="";
     switch(name){
         case 'email':
-            var exp =/^[\w.]{3,}@gmail.com$/;
+            var exp =/^[\w.]{3,}@[a-z]{2,}.[a-z]{2,}$/;
             if(!exp.test(value))
             {
                 hasError = true;
@@ -97,7 +97,8 @@ let LoginPage = () => {
       }
       else
       {
-        alert("New user");
+        setMsg("You have not registered yet, please register yourself or check your email or password is correct.");
+        //navigate("/register");
       }
     })
   }
@@ -127,6 +128,7 @@ let LoginPage = () => {
               <div className="card-body">
                 <h3 className="card-title text-center">Login</h3>
                 <form>
+                <div style={{color:"red",marginBottom:"25px",marginTop:"25px"}} className="text-center">{msg}</div>
                   <div className="mb-3">
                     <label htmlFor="email" className="form-label">
                       Email address
@@ -177,7 +179,6 @@ let LoginPage = () => {
                     </button>
                   </div>
                 </form>
-                {/* <div>{msg}</div> */}
               </div>
             </div>
           </div>

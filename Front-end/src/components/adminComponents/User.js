@@ -2,14 +2,15 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-function Farmerview()
+import Admin from "./admin";
+function User()
 {
     const[data,setdata]=useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     useEffect(() => {
       
-        fetch("https://localhost:7063/api/Farmers")
+        fetch("https://localhost:7063/api/Users")
             .then(response => {
                 if(response.ok)
                 {
@@ -37,9 +38,8 @@ function Farmerview()
     }
 
     return (
-        <div>        
-
-            <div>
+        <div>
+      <div>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">ADMIN</a>
@@ -80,37 +80,30 @@ function Farmerview()
           </div>
         </div>
       </nav>
-            <h2>Farmers</h2>
-            </div>
+            <h2>All users</h2>
+            </div>            
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">fid</th>
                         <th scope="col">uid</th>
-                        <th scope="col">pincode</th>
-                        <th scope="col">area</th>
-                        <th scope="col">city</th>
-                        <th scope="col">bdate</th>
-                        <th scope="col">panNo</th>
-                        <th scope="col">registeredAt</th>
-                        <th scope="col">status</th>
+                        <th scope="col">fname</th>
+                        <th scope="col">lname</th>                  
+                        <th scope="col">email</th>
+                        <th scope="col">contact</th>
+                        <th scope="col">type</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map(farmerdata => (
-                        <tr key={farmerdata.fid}>
-                            <td>{farmerdata.fid}</td>
+                    {data.map(userdata => (
+                        <tr key={userdata.uid}>
+                            <td>{userdata.uid}</td>
                            
-                            <td>{farmerdata.uid}</td>
+                            <td>{userdata.fname}</td>
                             
-                            <td>{farmerdata.pincode}</td>
-                            <td>{farmerdata.area}</td>
-                            <td>{farmerdata.city}</td>
-                            <td>{farmerdata.bdate}</td>
-                            <td>{farmerdata.panNo}</td>
-                            <td>{farmerdata.registeredAt}</td>
-                            <td>{farmerdata.status}</td>
-                     
+                            <td>{userdata.lname}</td>
+                            <td>{userdata.email}</td>
+                            <td>{userdata.contact}</td>
+                            <td>{userdata.type}</td>                     
                         </tr>
                     ))}
 
@@ -121,4 +114,4 @@ function Farmerview()
     );
 }
 
-export default Farmerview;
+export default User;

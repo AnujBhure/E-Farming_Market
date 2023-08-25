@@ -2,34 +2,40 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, useNavigate } from 'react-router-dom';
 
-const AddProduct = () => {
-  const [productName, setProductName] = useState('');
-  const [productDescription, setProductDescription] = useState('');
-  const [price, setPrice] = useState('');
-  const [category, setCategory] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [thumbnail, setThumbnail] = useState(null);
+const WholesalerProfileForm = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    city: '',
+    pincode: '',
+    area: '',
+    birthDate: '',
+  });
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setThumbnail(file);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can perform the logic to submit the form data
-    // For example, sending the data to a server using an API call
+    // You can perform form submission or validation here
+    console.log(formData);
   };
 
-const navigate=useNavigate();
+  const navigate=useNavigate();
 
   return (
-    <div className="container">
+    <div>
+      {/* Header */}
       <header className="mb-4">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="container-fluid">
             <a className="navbar-brand" href="#">
-                Welcome, farmer
+                Welcome, wholesaler
             </a>
             <button
               className="navbar-toggler"
@@ -45,7 +51,7 @@ const navigate=useNavigate();
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav ms-auto">
                 <li>
-                  <Link to="/farmer_home" class="nav-link">Home</Link>
+                  <Link to="/wholesaler_home" class="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
                   <input
@@ -71,89 +77,90 @@ const navigate=useNavigate();
         </nav>
       </header>
      
-      <div className="row">
-        <div className="col-sm-6 offset-sm-3">
-          <h2 className='text-center'>Add New Product</h2>
+    <div className="container mt-5">
+      <div className="col-md-6 offset-md-3">
+        <h2 className="text-center">Your Profile</h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label htmlFor="productName" className="form-label">
-                Product Name
+              <label htmlFor="firstName" className="form-label">
+                First Name
               </label>
               <input
                 type="text"
                 className="form-control"
-                id="productName"
-                value={productName}
-                onChange={(e) => setProductName(e.target.value)}
-                required
+                id="firstName"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="productDescription" className="form-label">
-                Product Description
-              </label>
-              <textarea
-                className="form-control"
-                id="productDescription"
-                value={productDescription}
-                onChange={(e) => setProductDescription(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="price" className="form-label">
-                Price
-              </label>
-              <input
-                type="number"
-                className="form-control"
-                id="price"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="category" className="form-label">
-                Category
+              <label htmlFor="lastName" className="form-label">
+                Last Name
               </label>
               <input
                 type="text"
                 className="form-control"
-                id="category"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                required
+                id="lastName"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="quantity" className="form-label">
-                Quantity
+              <label htmlFor="birthDate" className="form-label">
+                Birth Date
               </label>
               <input
-                type="number"
+                type="date"
                 className="form-control"
-                id="quantity"
-                value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
-                required
+                id="birthDate"
+                name="birthDate"
+                value={formData.birthDate}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="thumbnail" className="form-label">
-                Thumbnail
+              <label htmlFor="area" className="form-label">
+                Area
               </label>
               <input
-                type="file"
+                type="text"
                 className="form-control"
-                id="thumbnail"
-                onChange={handleFileChange}
-                accept="image/*"
-                required
+                id="area"
+                name="area"
+                value={formData.area}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="city" className="form-label">
+                City
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="city"
+                name="city"
+                value={formData.city}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="pincode" className="form-label">
+                Pincode
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="pincode"
+                name="pincode"
+                value={formData.pincode}
+                onChange={handleChange}
               />
             </div>
             <button type="submit" className="btn btn-primary">
-              Add Product
+              Update
             </button>
           </form>
         </div>
@@ -162,4 +169,4 @@ const navigate=useNavigate();
   );
 };
 
-export default AddProduct;
+export default WholesalerProfileForm;

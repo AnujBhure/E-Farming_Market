@@ -151,7 +151,7 @@ function InsertUser() {
                 break;
 
             case 'email':
-                var exp1 =/^[\w.]{3,}@gmail.com$/;
+                var exp1 =/^[\w.]{3,}@[a-z]{2,}.[a-z]{2,}$/;
                 if(!exp1.test(value))
                 {
                     hasError = true;
@@ -176,8 +176,8 @@ function InsertUser() {
       }
 
 
-    const sendData=(e)=>{
-        e.preventDefault();
+    const sendData=()=>{
+        // e.preventDefault();
         const reqOpitions={
             method:'POST',
             headers:{'content-type':'application/json'},
@@ -202,34 +202,38 @@ function InsertUser() {
         {
             fetch("http://localhost:8080/registerfarmer",reqOpitions)
             .then(resp => {
-                alert("in farmer");
+                // alert("in farmer");
                 if(resp.ok)
                 {
-                    alert("Registered successfully");
+                    // alert("Registered successfully");
                     navigate("/login");
                 }
                 else{
-                    alert("farmer error");
+                    // alert("farmer error");
                     setMsg("This email id is already registered.");
                 }
             }) 
         }
-        else if(info.type==='w')
+        else if(info.type.value==='w')
         {
+            // alert("registering");
             fetch("http://localhost:8080/registerwholesaler",reqOpitions)
             .then(resp => {
-                alert("in wholesaler");
+                // alert("in wholesaler");
                 if(resp.ok)
                 {
-                    alert("Registered successfully");
+                    // alert("Registered successfully");
                     navigate("/login");
                 }
                 else{
-                    alert("farmer error");
+                    // alert("farmer error");
                     setMsg("This email id is already registered.");
                 }
             }) 
+            
         }
+        else
+            setMsg("Please fill all the fields");
     }
 
 
@@ -386,8 +390,8 @@ function InsertUser() {
                                 {/* disabled={!info.isFormValid} */}
                             </div>
                             {/* <div>{JSON.stringify(info)}</div> */}
-                            <div>{msg}</div>
-                            <div>{info.type.value}</div>
+                            <div >{msg}</div>
+                            {/* <div>{info.type.value}</div> */}
                         </div>
                     </div>
                 </div>

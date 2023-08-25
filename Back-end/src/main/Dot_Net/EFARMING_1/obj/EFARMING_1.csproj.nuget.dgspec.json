@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\dot.net project\\EFARMING_1\\EFARMING_1.csproj": {}
+    "E:\\CDAC\\PROJECT\\E-farming market\\E-Farming_Market\\Back-end\\src\\main\\Dot_Net\\EFARMING_1\\EFARMING_1.csproj": {}
   },
   "projects": {
-    "D:\\dot.net project\\EFARMING_1\\EFARMING_1.csproj": {
+    "E:\\CDAC\\PROJECT\\E-farming market\\E-Farming_Market\\Back-end\\src\\main\\Dot_Net\\EFARMING_1\\EFARMING_1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\dot.net project\\EFARMING_1\\EFARMING_1.csproj",
+        "projectUniqueName": "E:\\CDAC\\PROJECT\\E-farming market\\E-Farming_Market\\Back-end\\src\\main\\Dot_Net\\EFARMING_1\\EFARMING_1.csproj",
         "projectName": "EFARMING_1",
-        "projectPath": "D:\\dot.net project\\EFARMING_1\\EFARMING_1.csproj",
-        "packagesPath": "C:\\Users\\pratik\\.nuget\\packages\\",
-        "outputPath": "D:\\dot.net project\\EFARMING_1\\obj\\",
+        "projectPath": "E:\\CDAC\\PROJECT\\E-farming market\\E-Farming_Market\\Back-end\\src\\main\\Dot_Net\\EFARMING_1\\EFARMING_1.csproj",
+        "packagesPath": "C:\\Users\\anujb\\.nuget\\packages\\",
+        "outputPath": "E:\\CDAC\\PROJECT\\E-farming market\\E-Farming_Market\\Back-end\\src\\main\\Dot_Net\\EFARMING_1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pratik\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\anujb\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -87,8 +87,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -100,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

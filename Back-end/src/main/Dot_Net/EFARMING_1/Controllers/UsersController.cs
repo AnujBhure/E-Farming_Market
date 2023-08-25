@@ -29,8 +29,13 @@ namespace EFARMING_1.Controllers
           {
               return NotFound();
           }
+
+          //if(_context.Users.GetType()=='f')
             return await _context.Users.ToListAsync();
         }
+
+            
+       
 
         // GET: api/Users/5
         [HttpGet("{id}")]

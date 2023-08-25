@@ -8,6 +8,13 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import AddProduct from './components/farmerComponents/ProductForm';
 import FarmerModule from './components/farmerComponents/FarmerPage';
+import WholesellerModule from './components/wholsalerComponents/WholesellerM';
+import ShowProducts from './components/wholsalerComponents/showProducts';
+import Farmerview from './components/adminComponents/Farmer';
+import Wholesalers from './components/adminComponents/Wholesaler';
+import WholesalerProfileForm from './components/wholsalerComponents/Profile';
+import FarmerProfileForm from './components/farmerComponents/Profile';
+import User from './components/adminComponents/User';
 
 function App() {
   return (
@@ -19,8 +26,14 @@ function App() {
             <Route path="/register" element={<InsertUser/>}/>
             <Route path="/admin_home" element={<Admin/>}/>
             <Route path="/farmer_home" element={<FarmerModule/>}/>
-            <Route path="/addProduct" element={<AddProduct/>}/>
-            {/* <Route path="/wholesaler_home" element={<Wholesaler_home/>}/> */}
+            <Route path="/addproduct" element={<AddProduct/>}/>
+            <Route path="/wholesaler_home" element={<WholesellerModule/>}/>
+            <Route path="/showproducts" element={<ShowProducts/>}/>
+            <Route path="/listfarmers" element={<Farmerview/>}/>
+            <Route path="/listwholesalers" element={<Wholesalers/>}/>
+            <Route path="/wholesalerprofile" element={<WholesalerProfileForm/>}/>
+            <Route path="/farmerprofile" element={<FarmerProfileForm/>}/>
+            <Route path="/User" element={<User/>}/>
           </Routes>
           <Footer/>
         </div>
