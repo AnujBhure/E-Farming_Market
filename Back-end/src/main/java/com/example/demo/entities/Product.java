@@ -1,5 +1,7 @@
 package com.example.demo.entities;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,20 +24,14 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int pid;
 	private String name;
-		
-	@JsonIgnoreProperties("products")
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cid", nullable = false)
+	
+	@ManyToOne
+	@JoinColumn(name="cid")
+	@Cascade(CascadeType.MERGE)
 	private Category category;
-
+	
 	public Product() {
 		super();
-	}
-
-	public Product(String name, int cid) {
-		super();
-		this.name = name;
-		this.category.setCid(cid);
 	}
 	
 	public Product(String name, Category category) {

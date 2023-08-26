@@ -12,7 +12,6 @@ import com.example.demo.entities.Product;
 
 @Repository
 @Transactional
-@EnableJpaRepositories
 public interface ProductRepo extends JpaRepository<Product, Integer> {
 
 	@Query(value ="select * from products p where p.cid=:cid", nativeQuery = true)
