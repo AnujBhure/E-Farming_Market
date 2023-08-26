@@ -21,13 +21,13 @@ public class CategoryService {
 		return crepo.findAll();
 	}
 	
-	public Set<Product> getProductsByCat(int cid)
-	{
-		Optional<Category> c=crepo.findById(cid);
-		Category cs=c.get();
-		Set<Product> ps=cs.getProducts();
-		return ps;
-	}
+//	public Set<Product> getProductsByCat(int cid)
+//	{
+//		Optional<Category> c=crepo.findById(cid);
+//		Category cs=c.get();
+////		Set<Product> ps=cs.getProducts();
+//		return ps;
+//	}
 
 	public Category addCategory(Category c)
 	{
