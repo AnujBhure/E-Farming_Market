@@ -15,6 +15,7 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cid;
 	private String name;
+	private byte[] image;
 	
 	public Category() {
 		super();
@@ -23,6 +24,12 @@ public class Category {
 	public Category(String name) {
 		super();
 		this.name = name;
+	}
+
+	public Category(String name, byte[] image) {
+		super();
+		this.name = name;
+		this.image = image;
 	}
 
 	public int getCid() {
@@ -39,6 +46,14 @@ public class Category {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 }

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
@@ -30,6 +31,11 @@ public class Product {
 	@Cascade(CascadeType.MERGE)
 	private Category category;
 	
+//	@OneToMany(mappedBy = "product")
+//	@JsonIgnoreProperties("product")
+//	@Cascade(CascadeType.ALL)
+//	Set<Farmer_Product> farmer_product;
+	
 	public Product() {
 		super();
 	}
@@ -39,7 +45,7 @@ public class Product {
 		this.name = name;
 		this.category = category;
 	}
-
+	
 	public int getPid() {
 		return pid;
 	}
