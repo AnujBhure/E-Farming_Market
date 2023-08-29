@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -33,6 +35,10 @@ public class Farmer {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "uid")
 	User user;
+	
+//	@OneToMany(mappedBy = "farmer")
+//	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+//	Set<Farmer_Product> farmer_product;
 	
 	public Farmer() {
 		super();
