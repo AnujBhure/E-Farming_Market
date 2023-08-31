@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const WholesalerProfileForm = () => {
+
+  const location = useLocation();
+    const receivedData = location.state;
+  const [whole,setWhole]=useState({});
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -28,6 +32,24 @@ const WholesalerProfileForm = () => {
 
   const navigate=useNavigate();
 
+
+  useEffect(() => {
+      
+    fetch("http://localhost:8080/getcategories")
+        .then(response => {
+            if(response.ok)
+            {
+                return response.json();
+            }
+            else{
+                throw new Error("Failed to fetch data");
+            }
+        })
+        .then(data => {
+          setWhole(data);
+        })
+  }, []);
+
   return (
     <div>
       {/* Header */}
@@ -35,7 +57,7 @@ const WholesalerProfileForm = () => {
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="container-fluid">
             <a className="navbar-brand" href="#">
-                Welcome, wholesaler
+                Welcome, {receivedData.fname}
             </a>
             <button
               className="navbar-toggler"
@@ -90,7 +112,7 @@ const WholesalerProfileForm = () => {
                 className="form-control"
                 id="firstName"
                 name="firstName"
-                value={formData.firstName}
+                value={receivedData.fname}
                 onChange={handleChange}
               />
             </div>
@@ -103,7 +125,7 @@ const WholesalerProfileForm = () => {
                 className="form-control"
                 id="lastName"
                 name="lastName"
-                value={formData.lastName}
+                value={receivedData.lname}
                 onChange={handleChange}
               />
             </div>
@@ -116,7 +138,7 @@ const WholesalerProfileForm = () => {
                 className="form-control"
                 id="birthDate"
                 name="birthDate"
-                value={formData.birthDate}
+                value={receivedData.bdate}
                 onChange={handleChange}
               />
             </div>
@@ -129,7 +151,7 @@ const WholesalerProfileForm = () => {
                 className="form-control"
                 id="area"
                 name="area"
-                value={formData.area}
+                value={receivedData.area}
                 onChange={handleChange}
               />
             </div>
@@ -142,7 +164,7 @@ const WholesalerProfileForm = () => {
                 className="form-control"
                 id="city"
                 name="city"
-                value={formData.city}
+                value={receivedData.city}
                 onChange={handleChange}
               />
             </div>
@@ -155,7 +177,7 @@ const WholesalerProfileForm = () => {
                 className="form-control"
                 id="pincode"
                 name="pincode"
-                value={formData.pincode}
+                value={receivedData.pincode}
                 onChange={handleChange}
               />
             </div>

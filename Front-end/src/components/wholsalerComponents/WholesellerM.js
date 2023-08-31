@@ -41,7 +41,7 @@ const WholesellerModule = () => {
           <div className="position-sticky">
             <ul className="nav flex-column">
             <li className="nav-item">
-              <Link to="/wholesalerprofile" class="nav-link">Profile</Link>
+              <Link to="/wholesalerprofile" state={receivedData} class="nav-link">Profile</Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link active" href="#">
@@ -49,9 +49,7 @@ const WholesellerModule = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  My Cart
-                </a>
+              <Link to="/mycart" state={receivedData} class="nav-link">My cart</Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link active" href="#">
