@@ -26,6 +26,7 @@ function InsertUser() {
         switch(action.type)
         {
             case 'update':
+                console.log(action.data);
           const {name,value,hasError,error,touched,isFormValid}=action.data;
           return {...state,[name]:{value,hasError,error,touched},isFormValid}
       case 'reset':
@@ -40,16 +41,17 @@ function InsertUser() {
     const navigate=useNavigate();
 
     const handleChange=(name,value)=>{
-        const {hasError,error}=validateData(name,value);
-        let isFormValid=true;
-        for(const key in info)
-        {
-            if(info[key].hasError===true)
-            {
-                isFormValid = false;
-                break;
-            }
-        }
+        let {hasError,error,isFormValid}=validateData(name,value);
+        // let isFormValid=true;
+        console.log("hello",isFormValid)
+        // for(const key in info)
+        // {
+        //     if(info[key].hasError===true)
+        //     {
+        //         isFormValid = false;
+        //         break;
+        //     }
+        // }
     
         dispatch({type: 'update', data: {name,value,hasError, error,touched: true,isFormValid} })
       }
@@ -58,6 +60,7 @@ function InsertUser() {
       const validateData=(name,value)=>{
         let hasError=false;
         let error="";
+        let isFormValid=true;
         switch(name){
 
             case 'bdate':
@@ -67,6 +70,7 @@ function InsertUser() {
                 {
                     hasError = true;
                     error="You should be 18 year old";
+                    isFormValid=false;
                     break;
                 }
 
@@ -79,6 +83,7 @@ function InsertUser() {
                 if(!exp.test(value))
                 {
                     hasError = true;
+                    isFormValid=false;
                     error = "Enter valid pincode";
                 }
                 break;
@@ -88,6 +93,7 @@ function InsertUser() {
                 {
                     hasError = true;
                     error = "Enter area";
+                    isFormValid=false;
                 }
                 break;
 
@@ -95,6 +101,7 @@ function InsertUser() {
                 if(value==="")
                 {
                     hasError = true;
+                    isFormValid=false;
                     error = "Enter city";
                 }
                 break;
@@ -104,6 +111,7 @@ function InsertUser() {
                 if(!exp2.test(value))
                 {
                     hasError = true;
+                    isFormValid=false;
                     error = "Enter valid pan";
                 }
                 break;
@@ -113,6 +121,7 @@ function InsertUser() {
                 if(!exp3.test(value))
                 {
                     hasError = true;
+                    isFormValid=false;
                     error = "Enter valid aadhar";
                 }
                 break;
@@ -122,6 +131,7 @@ function InsertUser() {
                 {
                     hasError = true;
                     error = "Enter first name";
+                    isFormValid=false;   
                 }
                 break;
 
@@ -129,6 +139,7 @@ function InsertUser() {
                 if(value==="")
                 {
                     hasError = true;
+                    isFormValid=false;
                     error = "Enter last name";
                 }
                 break;
@@ -138,6 +149,7 @@ function InsertUser() {
                 if(!exp4.test(value))
                 {
                     hasError = true;
+                    isFormValid=false;
                     error = "Enter valid Password";
                 }
                 break;
@@ -146,15 +158,17 @@ function InsertUser() {
                 if(value!==info.password.value)
                 {
                     hasError = true;
+                    isFormValid=false;
                     error = "Password should be matched";
                 }
                 break;
 
             case 'email':
-                var exp1 =/^[\w.]{3,}@gmail.com$/;
+                var exp1 =/^[\w.]{3,}@[a-z]{2,}.[a-z]{2,}$/;
                 if(!exp1.test(value))
                 {
                     hasError = true;
+                    isFormValid=false;
                     error = "Enter valid email ID";
                 }
                 break;
@@ -164,6 +178,7 @@ function InsertUser() {
                 if(!exp5.test(value))
                 {
                     hasError = true;
+                    isFormValid=false;
                     error = "Enter valid email ID";
                 }
                 break;
@@ -172,12 +187,12 @@ function InsertUser() {
                 return 0;
                 
         }
-        return {hasError,error}
+        return {hasError,error,isFormValid}
       }
 
 
-    const sendData=(e)=>{
-        e.preventDefault();
+    const sendData=()=>{
+        // e.preventDefault();
         const reqOpitions={
             method:'POST',
             headers:{'content-type':'application/json'},
@@ -202,34 +217,38 @@ function InsertUser() {
         {
             fetch("http://localhost:8080/registerfarmer",reqOpitions)
             .then(resp => {
-                alert("in farmer");
+                // alert("in farmer");
                 if(resp.ok)
                 {
-                    alert("Registered successfully");
+                    // alert("Registered successfully");
                     navigate("/login");
                 }
                 else{
-                    alert("farmer error");
+                    // alert("farmer error");
                     setMsg("This email id is already registered.");
                 }
             }) 
         }
-        else if(info.type==='w')
+        else if(info.type.value==='w')
         {
+            // alert("registering");
             fetch("http://localhost:8080/registerwholesaler",reqOpitions)
             .then(resp => {
-                alert("in wholesaler");
+                // alert("in wholesaler");
                 if(resp.ok)
                 {
-                    alert("Registered successfully");
+                    // alert("Registered successfully");
                     navigate("/login");
                 }
                 else{
-                    alert("farmer error");
+                    // alert("farmer error");
                     setMsg("This email id is already registered.");
                 }
             }) 
+            
         }
+        else
+            setMsg("Please fill all the fields");
     }
 
 
@@ -382,12 +401,12 @@ function InsertUser() {
                             </form>
                             <div class="footer">
                                 <button type="button" className="btn btn-primary" onClick={()=>{dispatch({type:'reset'})}}>Reset</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <button type="button" className="btn btn-primary" onClick={sendData} >Register</button>
+                                <button type="button" className="btn btn-primary" onClick={sendData} disabled={!info.isFormValid}>Register</button>
                                 {/* disabled={!info.isFormValid} */}
                             </div>
                             {/* <div>{JSON.stringify(info)}</div> */}
-                            <div>{msg}</div>
-                            <div>{info.type.value}</div>
+                            <div >{msg}</div>
+                            {/* <div>{info.type.value}</div> */}
                         </div>
                     </div>
                 </div>
