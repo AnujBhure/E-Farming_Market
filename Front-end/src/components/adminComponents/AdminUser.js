@@ -2,26 +2,22 @@ import React from "react";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import Admin from "./admin";
-function User()
-{
-    const[data,setdata]=useState([]);
+function Adminadmin() {
+    const [data, setdata] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [msg,setMsg]=useState("");
     const navigate=useNavigate();
+    const [msg,setMsg]=useState("");
     const location = useLocation();
     const receivedData = location.state;
 
     useEffect(() => {
-      
-        fetch("https://localhost:7063/api/Users")
+        fetch("https://localhost:7063/api/Users/getadminfromuser")
             .then(response => {
-                if(response.ok)
-                {
+                if (response.ok) {
                     return response.json();
                 }
-                else{
+                else {
                     throw new Error("Failed to fetch data");
                 }
             })
@@ -34,6 +30,8 @@ function User()
                 setLoading(false);
             });
     }, []);
+
+
     if (loading) {
         return <p>Loading...</p>;
     }
@@ -42,10 +40,12 @@ function User()
         return <p>Error: {error}</p>;
     }
 
+
+    
     return (
-        <div>
       <div>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <div>
+        <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">Welcome, {receivedData?.fname}</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -102,30 +102,30 @@ function User()
           </div>
         </div>
       </nav>
-            <h2>All users</h2>
-            </div>            
+
+        </div>
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">uid</th>
+                        {/* <th scope="col">Uid</th> */}
                         <th scope="col">fname</th>
-                        <th scope="col">lname</th>                  
+                        <th scope="col">lname</th>
                         <th scope="col">email</th>
                         <th scope="col">contact</th>
-                        <th scope="col">type</th>
+                        {/* <th scope="col">type</th> */}
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map(userdata => (
-                        <tr key={userdata.uid}>
-                            <td>{userdata.uid}</td>
-                           
-                            <td>{userdata.fname}</td>
-                            
-                            <td>{userdata.lname}</td>
-                            <td>{userdata.email}</td>
-                            <td>{userdata.contact}</td>
-                            <td>{userdata.type}</td>                     
+                    {data.map(Admin => (
+                        <tr key={Admin.uid}>
+                            {/* <td>{Admin.uid}</td> */}
+                            <td>{Admin.fname}</td>                          
+                            <td>{Admin.lname}</td>
+                            <td>{Admin.email}</td>
+                            <td>{Admin.contact}</td>
+                            {/* <td>{Admin.type}</td> */}
+                        
+                     
                         </tr>
                     ))}
 
@@ -134,6 +134,7 @@ function User()
 
         </div>
     );
+
 }
 
-export default User;
+export default Adminadmin;

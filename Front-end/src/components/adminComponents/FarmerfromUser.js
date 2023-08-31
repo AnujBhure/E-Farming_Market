@@ -2,23 +2,23 @@ import React from "react";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import Admin from "./admin";
-function User()
+function FarmerFromUser()
 {
     const[data,setdata]=useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [msg,setMsg]=useState("");
     const navigate=useNavigate();
+    const [msg,setMsg]=useState("");
     const location = useLocation();
     const receivedData = location.state;
 
     useEffect(() => {
       
-        fetch("https://localhost:7063/api/Users")
+        fetch("https://localhost:7063/api/Users/getallfarmersfromuser")
             .then(response => {
                 if(response.ok)
                 {
+                  
                     return response.json();
                 }
                 else{
@@ -43,9 +43,10 @@ function User()
     }
 
     return (
-        <div>
-      <div>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <div>        
+
+            <div>
+            <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">Welcome, {receivedData?.fname}</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -102,30 +103,32 @@ function User()
           </div>
         </div>
       </nav>
-            <h2>All users</h2>
-            </div>            
+
+            <h2>Farmers</h2>
+            </div>
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">uid</th>
                         <th scope="col">fname</th>
-                        <th scope="col">lname</th>                  
+                        <th scope="col">lname</th>
                         <th scope="col">email</th>
                         <th scope="col">contact</th>
-                        <th scope="col">type</th>
+                        {/* <th scope="col">type</th> */}
+                       
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map(userdata => (
-                        <tr key={userdata.uid}>
-                            <td>{userdata.uid}</td>
+                    {data.map(Farmer => (
+                        <tr key={Farmer.uid}>
+                            <td>{Farmer.uid}</td>
                            
-                            <td>{userdata.fname}</td>
+                            <td>{Farmer.fname}</td>
                             
-                            <td>{userdata.lname}</td>
-                            <td>{userdata.email}</td>
-                            <td>{userdata.contact}</td>
-                            <td>{userdata.type}</td>                     
+                            <td>{Farmer.lname}</td>
+                            <td>{Farmer.email}</td>
+                            <td>{Farmer.contact}</td>
+                            {/* <td>{Farmer.type}</td> */}
                         </tr>
                     ))}
 
@@ -136,4 +139,4 @@ function User()
     );
 }
 
-export default User;
+export default FarmerFromUser;

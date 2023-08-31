@@ -1,17 +1,14 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { Link, useLocation, useNavigate,useParams } from 'react-router-dom';
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
+export default function AdminNavbar(){
 
-function Admin() {
-const navigate=useNavigate();
-const location = useLocation();
-const receivedData = location.state;
-
-  return (
-    <div>
-      <div>
+    const navigate=useNavigate();
+    const location = useLocation();
+    const receivedData = location.state;
+    
+    return(
+        <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">Welcome, {receivedData?.fname}</a>
@@ -21,7 +18,7 @@ const receivedData = location.state;
           <div className="collapse navbar-collapse" id="navbarScroll">
             <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style={{'--bs-scroll-height': '100px'}}>
               <li className="nav-item">
-              <Link to="/admin_home" state={receivedData} class="nav-link">Home</Link>
+              <Link to="/admin_home" class="nav-link">Home</Link>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -29,26 +26,25 @@ const receivedData = location.state;
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <Link to="/listfarmers" state={receivedData} class="nav-link">Farmers Details</Link>
+                    <Link to="/listfarmers" class="nav-link">Farmers Details</Link>
                   </li>
                   <li>
-                    <Link to="/listwholesalers" state={receivedData} class="nav-link">Wholesalers Details</Link>
-                  </li>
-                 
-                  <li>
-                  <Link to="/user" class="nav-link">User Details</Link>
+                  <Link to="/listwholesalers" class="nav-link">Wholesalers Details</Link>
                   </li>
                   <li>
-                    <Link to="/admin" class="nav-link">Admin Details</Link>
+                      <Link  class="nav-link">Order Details</Link>
+                  </li>
+                  <li>
+                  <Link to="/User" class="nav-link">User Details</Link>
                   </li>
                   <li><hr className="dropdown-divider"></hr></li>
                 </ul>
               </li>
               <li>
-                <Link to="/addcategory" state={receivedData} class="nav-link" >Add Category</Link>
+                <Link to="/addcategory" class="nav-link" >Add Category</Link>
               </li>
               <li style={{marginRight:"300px"}}>
-                <Link to="/addnewproduct" state={receivedData} class="nav-link" >Add Product</Link>
+                <Link to="/addnewproduct" class="nav-link" >Add Product</Link>
               </li>
             
               <form className="d-flex" role="search">
@@ -70,14 +66,6 @@ const receivedData = location.state;
         </div>
       </nav>
 
-      </div>
-
-
-      <div>
-
-      </div>
-    </div>
-  );
+        </div>
+    )
 }
-
-export default Admin;

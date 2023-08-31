@@ -35,7 +35,7 @@ public class ProductController {
 	}
 	
 //	@GetMapping("/getproductsbycid/{cid}")
-//	public Optional<Product> getProductsByCat(@PathVariable int cid)
+//	public List<Product> getProductsByCat(@PathVariable int cid)
 //	{
 //		return ps.getProductsByCat(cid);
 //	}

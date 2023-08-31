@@ -27,12 +27,6 @@ public class CategoryController {
 		return cs.getCategories();
 	}
 	
-//	@GetMapping("/getproductsbycid/{cid}")
-//	public Set<Product> getProductsByCat(@PathVariable int cid)
-//	{
-//		return cs.getProductsByCat(cid);
-//	}
-	
 	@PostMapping("/addcategory")
 	public Category addCategory(@RequestBody Category c)
 	{
