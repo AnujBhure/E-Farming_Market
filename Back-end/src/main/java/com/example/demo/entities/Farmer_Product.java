@@ -1,7 +1,6 @@
 package com.example.demo.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,45 +8,59 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="farmers_products")
-public class Farmer_Product {
+public class Farmer_Product{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int fp_id;
 	private float price;
 	private String description;
-	
-	@JsonIgnoreProperties("farmers_products")
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "fid", nullable = false)
+	private int stock;
+	private byte[] image;
+
+	@ManyToOne
+	@JsonIgnoreProperties("farmer_product")
+	@JoinColumn(name="fid")
+	@Cascade(CascadeType.ALL)
 	private Farmer farmer;
 	
-	@JsonIgnoreProperties("farmers_products")
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "pid", nullable = false)
+	@ManyToOne
+	@JsonIgnoreProperties("farmer_product")
+	@JoinColumn(name="pid")
+	@Cascade(CascadeType.ALL)
 	private Product product;
-	
-	@JsonIgnoreProperties("farmers_products")
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cid", nullable = false)
-	private Category category;
 
 	public Farmer_Product() {
 		super();
 	}
-
-	public Farmer_Product(float price, String description, Farmer farmer, Product product, Category category) {
+	
+	public Farmer_Product(float price, String description, int stock, Farmer farmer, Product product) {
 		super();
 		this.price = price;
 		this.description = description;
+		this.stock = stock;
 		this.farmer = farmer;
 		this.product = product;
-		this.category = category;
 	}
+	
+	public Farmer_Product(float price, String description, int stock, byte[] image, Farmer farmer, Product product) {
+		super();
+		this.price = price;
+		this.description = description;
+		this.stock = stock;
+		this.image = image;
+		this.farmer = farmer;
+		this.product = product;
+	}
+
+
 
 	public int getFp_id() {
 		return fp_id;
@@ -89,12 +102,20 @@ public class Farmer_Product {
 		this.product = product;
 	}
 
-	public Category getCategory() {
-		return category;
+	public int getStock() {
+		return stock;
 	}
 
-	public void setCategory(Category category) {
-		this.category = category;
-	}	
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
 	
 }

@@ -1,95 +1,95 @@
-import React, { useState } from 'react';
 
-const MyCart = () => {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      productName: 'Wheat',
-      description:"type1",
-      availableQuantity: 1000,
-      pricePerUnit: 5,
-      quantity: 0,
-      
-    },
-    {
-      id: 2,
-      productName: 'Rice',
-      description:"type3",
-      availableQuantity: 800,
-      pricePerUnit: 4,
-      quantity: 0,
-      
-    },
-    // Add more products here...
-  ]);
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
-  const handleQuantityChange = (itemId, newQuantity) => {
-    const updatedCart = cartItems.map((item) =>
-      item.id === itemId ? { ...item, quantity: newQuantity } : item
-    );
-    setCartItems(updatedCart);
-  };
+export default function MyCart(){
 
-  const handleRemoveItem = (itemId) => {
-    const updatedCart = cartItems.filter((item) => item.id !== itemId);
-    setCartItems(updatedCart);
-  };
+    const navigate=useNavigate();
+    const [msg,setMsg]=useState("");
+    const [data,setData]=useState([]);
+    const location = useLocation();
+    const receivedData = location.state;
 
-  const calculateTotalPrice = () => {
-    return cartItems.reduce((total, item) => total + item.quantity * item.pricePerUnit, 0);
-  };
+    useEffect(() => {
+          fetch(`http://localhost:8080/getorderitemsbyoid?oid=1`)
+              .then(response => {
+                  if(response.ok)
+                  {
+                      return response.json();
+                  }
+                  else{
+                      setMsg("Failed to fetch data");
+                  }
+              })
+              .then(data => {
+                  setData(data);
+              })
+      }, []);
 
-  return (
-    <div>
-      <h2>My Cart</h2>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Product Name</th>
-            <th>Description</th>
-            <th>Available Quantity</th>
-            <th>Price per Unit</th>
-             <th>Quantity</th>
-            <th>Subtotal</th>
-            <th>Action</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          {cartItems.map((item) => (
-            <tr key={item.id}>
-              <td>{item.productName}</td>
-              <td>{item.description}</td>
-              <td>{item.availableQuantity}</td>
-              <td>Rs{item.pricePerUnit}</td>
-              <td>
-                <input
-                  type="number"
-                  min="0"
-                  max={item.availableQuantity}
-                  value={item.quantity}
-                  onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))}
-                />
-              </td>
-              <td>Rs{item.quantity * item.pricePerUnit}</td>
-              <td>
-                <button
-                  className="btn btn-danger btn-sm"
-                  onClick={() => handleRemoveItem(item.id)}
-                >
-                  Remove
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="text-right">
-        <h4>Total Price: Rs{calculateTotalPrice()}</h4>
-        <button className="btn btn-primary">Proceed to Buy</button>
-      </div>
-    </div>
-  );
-};
-
-export default MyCart;
+    return (
+        <div>
+            <header className="mb-4">
+                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <div className="container-fluid">
+                    <a className="navbar-brand" href="#">
+                        Welcome, {receivedData.fname}
+                    </a>
+                    <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                    >
+                    <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarNav">
+                    <ul className="navbar-nav ms-auto">
+                        <li>
+                        <Link to="/wholesaler_home" class="nav-link">Home</Link>
+                        </li>
+                        <li className="nav-item">
+                        <input
+                            type="text"
+                            className="form-control me-2"
+                            placeholder="Search"
+                        />
+                        </li>
+                        &nbsp;&nbsp;&nbsp;
+                        <li>
+                        <button className="btn btn-primary">Search</button>
+                        </li>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <li className="nav-item">
+                        <button className="btn btn-outline-primary me-2"
+                            onClick={()=>navigate("/")}>
+                            Logout
+                            </button>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+                </nav>
+            </header>
+            <div className="container text-center">
+                <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+                {data.map(product=>(
+                    <div className="col">
+                        <div class="card">
+                        <h4 class="card-title">{product.farmer_Product.product.name}</h4>
+                        <h6 class="card-title">{product.farmer_Product.description}</h6>
+                            <img src={`data:image/jpg;base64,${product.farmer_Product.image}`} class="card-img-top" alt="product" height="150px"/>
+                            <div class="card-body">
+                                <h4>Rs. {product.farmer_Product.price}</h4>
+                                <p class="card-text"></p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+                </div>
+             </div>
+        </div>
+    )
+}

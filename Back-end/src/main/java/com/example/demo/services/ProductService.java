@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entities.AddProduct;
+import com.example.demo.entities.Farmer;
 import com.example.demo.entities.Product;
 import com.example.demo.repositories.ProductRepo;
 
@@ -30,6 +30,17 @@ public class ProductService {
 	{
 		
 		return prepo.save(p);
+	}
+	
+	public Product getProductById(int pid)
+	{
+		Optional<Product> po=prepo.findById(pid);
+		Product p=null;
+		if(po!=null)
+		{
+			p=po.get();
+		}
+		return p;
 	}
 	
 }

@@ -1,5 +1,7 @@
 package com.example.demo.entities;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
@@ -22,20 +25,19 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int pid;
 	private String name;
-		
-	@JsonIgnoreProperties("products")
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cid", nullable = false)
+	
+	@ManyToOne
+	@JoinColumn(name="cid")
+	@Cascade(CascadeType.MERGE)
 	private Category category;
-
+	
+//	@OneToMany(mappedBy = "product")
+//	@JsonIgnoreProperties("product")
+//	@Cascade(CascadeType.ALL)
+//	Set<Farmer_Product> farmer_product;
+	
 	public Product() {
 		super();
-	}
-
-	public Product(String name, int cid) {
-		super();
-		this.name = name;
-		this.category.setCid(cid);
 	}
 	
 	public Product(String name, Category category) {
@@ -43,7 +45,7 @@ public class Product {
 		this.name = name;
 		this.category = category;
 	}
-
+	
 	public int getPid() {
 		return pid;
 	}

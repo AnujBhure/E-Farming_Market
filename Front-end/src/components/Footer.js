@@ -7,12 +7,12 @@ export default function Footer(){
                 <div className="row">
                 <div className="col-md-6 ">
                     <h5>Contact Us</h5>
-                    <p>Email: <a href="#"  className="icon-link icon-link-hover">contact@example.com</a></p>
+                    <p>Email: <a href="#"  className="icon-link icon-link-hover">efarmingmarket@gmail.com</a></p>
                     <p>Phone: (123) 456-7890</p>
                 </div>
                 <div className="col-md-6">
                     <h5>About Us</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <p>We are the middleware between Indian farmers and wholesalers for betterment of both the businesses.</p>
                 </div>
                 </div>
             </footer>
