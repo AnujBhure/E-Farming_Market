@@ -106,7 +106,7 @@ let MyProducts=()=>{
                     <h6 class="card-title">{product.description}</h6>
                         <img src={`data:image/jpg;base64,${product.image}`} class="card-img-top" alt="product" height="150px"/>
                         <div class="card-body">
-                        <h4>Rs. {product.price} per quintal</h4>
+                        <h4>Rs. {product.price}</h4>
                         <p class="card-text"></p>
                         </div>
                     </div>
