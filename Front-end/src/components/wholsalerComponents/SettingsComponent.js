@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Settings = () => {
