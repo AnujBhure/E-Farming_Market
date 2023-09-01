@@ -121,7 +121,7 @@ CREATE TABLE `order_items` (
   `fp_id` int(11) NOT NULL,
   `qty` int(11) NOT NULL,
   `tid` int(11) NOT NULL,
-  `delivery_date` date NOT NULL,
+  `delivery_date` date DEFAULT NULL,
   `rating` int(11) DEFAULT 0,
   `review` varchar(500) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0,
