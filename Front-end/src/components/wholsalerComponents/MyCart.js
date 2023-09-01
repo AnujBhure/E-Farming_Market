@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -23,8 +22,28 @@ export default function MyCart(){
               })
               .then(data => {
                   setData(data);
+                  console.log(data)
               })
       }, []);
+
+
+    const handleQuantityChange = (itemId, newQuantity) => {
+        // console.log(newQuantity);
+        const updatedCart = data.map((item) =>
+        item.farmer_Product.fp_id === itemId ? { ...item, qty: newQuantity } : item
+        );
+        setData(updatedCart);
+      };
+
+    const handleRemoveItem = (itemId) => {
+        const updatedCart = data.filter((item) => item.farmer_Product.fp_id !== itemId);
+        setData(updatedCart);
+      };
+    
+
+    const calculateTotalPrice = () => {
+        return data.reduce((total, item) => total + item.qty * item.farmer_Product.price, 0);
+      };
 
     return (
         <div>
@@ -74,22 +93,55 @@ export default function MyCart(){
                 </nav>
             </header>
             <div className="container text-center">
-                <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4">
-                {data.map(product=>(
-                    <div className="col">
-                        <div class="card">
-                        <h4 class="card-title">{product.farmer_Product.product.name}</h4>
-                        <h6 class="card-title">{product.farmer_Product.description}</h6>
-                            <img src={`data:image/jpg;base64,${product.farmer_Product.image}`} class="card-img-top" alt="product" height="150px"/>
-                            <div class="card-body">
-                                <h4>Rs. {product.farmer_Product.price}</h4>
-                                <p class="card-text"></p>
-                            </div>
-                        </div>
-                    </div>
+
+
+            <table className="table">
+                <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Description</th>
+                    <th>Available Quantity</th>
+                    <th>Price per Unit</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                    <th>Action</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                {data.map((item) => (
+                    <tr key={item.farmer_Product.fp_id}>
+                        <td>{item.farmer_Product.product.name}</td>
+                        <td>{item.farmer_Product.description}</td>
+                        <td>{item.farmer_Product.stock}</td>
+                        <td>Rs. {item.farmer_Product.price}</td>
+                        <td>
+                            <input
+                            type="number"
+                            min="0"
+                            max={item.farmer_Product.stock}
+                            value={item.qty}
+                            onChange={(e) => handleQuantityChange(item.farmer_Product.fp_id, parseInt(e.target.value))}
+                            />
+                        </td>
+                        <td>Rs. {item.qty * item.farmer_Product.price}</td>
+                        <td>
+                            <button
+                            className="btn btn-danger btn-sm"
+                            onClick={() => handleRemoveItem(item.farmer_Product.fp_id)}
+                            >
+                            Remove
+                            </button>
+                        </td>
+                    </tr>
                 ))}
-                </div>
+                </tbody>
+            </table>
+            <div className="text-right">
+                <h4>Total Price: Rs. {calculateTotalPrice()}</h4>
+                <button className="btn btn-primary">Proceed to Buy</button>
+            </div>
              </div>
-        </div>
-    )
+        </div>
+    )
 }
