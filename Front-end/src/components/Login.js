@@ -94,7 +94,6 @@ let LoginPage = () => {
         }
       })
       .then((data) => {
-        console.log(data);
         if (data?.type === "a") {
           //alert("admin");
           // navigate(`/admin_home/${data.uid}`);

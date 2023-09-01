@@ -7,7 +7,7 @@ const ShowProductsWholesaler = (state) => {
   const[data,setdata]=useState([]);
     const wholesaler = useLocation();
   const receivedData = wholesaler.state;
-  console.log(receivedData.cid);
+  // console.log(receivedData.cid);
 
     useEffect(() => {
         
@@ -22,7 +22,6 @@ const ShowProductsWholesaler = (state) => {
                 }
             })
             .then(data => {
-                console.log(data);
                 setdata(data);
             })
     }, []);
@@ -73,8 +72,9 @@ const ShowProductsWholesaler = (state) => {
                   <h6 class="card-title">{product.description}</h6>
                     <img src={`data:image/jpg;base64,${product.image}`} class="card-img-top" alt="product" height="150px"/>
                     <div class="card-body">
-                      <h4>${product.price}</h4>
-                      <button type="button" className="btn btn-primary">Buy</button>
+                      <h4>Rs. {product.price}</h4>
+                      <button type="button" className="btn btn-primary">Add to cart</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <button type="button" className="btn btn-warning">Buy</button>
                       <p class="card-text"></p>
                     </div>
                   </div>

@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const FarmerProfileForm = () => {
+
+  const location = useLocation();
+    const receivedData = location.state;
+  const [farmer,setFarmer]=useState({});
+  const [msg,setMsg]=useState("");
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -23,10 +29,27 @@ const FarmerProfileForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // You can perform form submission or validation here
-    console.log(formData);
+    // console.log(formData);
   };
 
   const navigate=useNavigate();
+
+  useEffect(() => {
+      
+    fetch(`http://localhost:8080/getfarmerbyuid?uid=${receivedData.uid}`)
+            .then(response => {
+                if(response.ok)
+                {
+                    return response.json();
+                }
+                else{
+                    setMsg("Failed to fetch data");
+                }
+            })
+            .then(data => {
+                setFarmer(data);
+            })
+}, []);
 
   return (
     <div>
@@ -89,7 +112,7 @@ const FarmerProfileForm = () => {
                 className="form-control"
                 id="firstName"
                 name="firstName"
-                value={formData.firstName}
+                value={receivedData.fname}
                 onChange={handleChange}
               />
             </div>
@@ -102,7 +125,7 @@ const FarmerProfileForm = () => {
                 className="form-control"
                 id="lastName"
                 name="lastName"
-                value={formData.lastName}
+                value={receivedData.lname}
                 onChange={handleChange}
               />
             </div>
@@ -115,7 +138,7 @@ const FarmerProfileForm = () => {
                 className="form-control"
                 id="birthDate"
                 name="birthDate"
-                value={formData.birthDate}
+                value={farmer.bdate}
                 onChange={handleChange}
               />
             </div>
@@ -128,7 +151,7 @@ const FarmerProfileForm = () => {
                 className="form-control"
                 id="area"
                 name="area"
-                value={formData.area}
+                value={farmer.area}
                 onChange={handleChange}
               />
             </div>
@@ -141,7 +164,7 @@ const FarmerProfileForm = () => {
                 className="form-control"
                 id="city"
                 name="city"
-                value={formData.city}
+                value={farmer.city}
                 onChange={handleChange}
               />
             </div>
@@ -154,7 +177,7 @@ const FarmerProfileForm = () => {
                 className="form-control"
                 id="pincode"
                 name="pincode"
-                value={formData.pincode}
+                value={farmer.pincode}
                 onChange={handleChange}
               />
             </div>

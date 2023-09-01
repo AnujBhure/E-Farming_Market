@@ -66,11 +66,6 @@ const AddProduct = () => {
   const submitData = (e) => {
     getFid();
     e.preventDefault();
-    console.log(farmer.fid);
-    console.log(pid);
-    console.log(stock);
-    console.log(price);
-    console.log(description);
     const reqOptions = {
       method: "POST",
       headers: { "content-type": "application/json" },
@@ -118,7 +113,7 @@ const AddProduct = () => {
       if(cid!=0 && pid!=0 && price!=0 && stock!=0)
       {
         isformvalid=true;
-        console.log("reached");
+        // console.log("reached");
       }
     }
       

@@ -72,7 +72,7 @@ const FarmerModule = () => {
           <div className="position-sticky text-center" >
             <ul className="nav flex-column">
             <li className="nav-item">
-            <Link to="/farmerprofile" class="nav-link">Profile</Link>
+            <Link to="/farmerprofile" state={receivedData} class="nav-link">Profile</Link>
               </li>
            
               <li className="nav-item">
@@ -82,7 +82,7 @@ const FarmerModule = () => {
                 <Link to="/myproducts" state={receivedData} class="nav-link">My Product</Link>
               </li>
               <li className="nav-item">
-              <Link to="/addproduct" state={receivedData} class="nav-link">Settings</Link>
+              <Link to="/#" state={receivedData} class="nav-link">Settings</Link>
               </li>
             </ul>
           </div>

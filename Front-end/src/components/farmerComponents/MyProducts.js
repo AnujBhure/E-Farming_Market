@@ -24,7 +24,7 @@ let MyProducts=()=>{
                 }
             })
             .then(data => {
-                console.log(data.fid);
+                // console.log(data.fid);
                 setFid(data.fid);
                 fetch(`http://localhost:8080/showproductsbyfid?fid=${data.fid}`)
                 .then(response => {
@@ -44,7 +44,7 @@ let MyProducts=()=>{
     }, []);
 
     const getFarmerProducts=(id)=>{
-        console.log(id)
+        // console.log(id)
         fetch(`http://localhost:8080/showproductsbyfid?fid=${id}`)
             .then(response => {
                 if(response.ok)

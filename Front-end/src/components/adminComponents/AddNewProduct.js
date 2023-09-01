@@ -59,7 +59,7 @@ let AddNewProduct=()=>{
           })
           
       };
-    console.log(cid,pname);
+    // console.log(cid,pname);
 
     
     return (
