@@ -94,7 +94,8 @@ export default function MyCart(){
             </header>
             <div className="container text-center">
 
-
+            <h2>My Cart</h2>
+                                
             <table className="table">
                 <thead>
                 <tr>
