@@ -6,7 +6,7 @@ let ShowProductsFarmer=()=>{
     const[data,setdata]=useState([]);
     const farmer = useLocation();
   const receivedData = farmer.state;
-  console.log(receivedData.cid);
+//   console.log(receivedData.cid);
 
     useEffect(() => {
         
@@ -21,7 +21,6 @@ let ShowProductsFarmer=()=>{
                 }
             })
             .then(data => {
-                console.log(data);
                 setdata(data);
             })
     }, []);

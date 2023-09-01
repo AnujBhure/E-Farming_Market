@@ -7,7 +7,7 @@ const ShowProductsWholesaler = (state) => {
   const[data,setdata]=useState([]);
     const wholesaler = useLocation();
   const receivedData = wholesaler.state;
-  console.log(receivedData.cid);
+  // console.log(receivedData.cid);
 
     useEffect(() => {
         
@@ -22,7 +22,6 @@ const ShowProductsWholesaler = (state) => {
                 }
             })
             .then(data => {
-                console.log(data);
                 setdata(data);
             })
     }, []);

@@ -27,7 +27,6 @@ const WholesalerProfileForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // You can perform form submission or validation here
-    console.log(formData);
   };
 
   const navigate=useNavigate();

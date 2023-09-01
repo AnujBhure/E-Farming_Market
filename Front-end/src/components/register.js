@@ -26,7 +26,7 @@ function InsertUser() {
         switch(action.type)
         {
             case 'update':
-                console.log(action.data);
+                // console.log(action.data);
           const {name,value,hasError,error,touched,isFormValid}=action.data;
           return {...state,[name]:{value,hasError,error,touched},isFormValid}
       case 'reset':
@@ -43,7 +43,7 @@ function InsertUser() {
     const handleChange=(name,value)=>{
         let {hasError,error,isFormValid}=validateData(name,value);
         // let isFormValid=true;
-        console.log("hello",isFormValid)
+        // console.log("hello",isFormValid)
         // for(const key in info)
         // {
         //     if(info[key].hasError===true)

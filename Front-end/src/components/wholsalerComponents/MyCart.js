@@ -25,7 +25,6 @@ export default function MyCart(){
               })
       }, []);
 
-      console.log(data);
     return (
         <div>
             <header className="mb-4">

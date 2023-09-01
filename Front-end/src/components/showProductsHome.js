@@ -7,7 +7,6 @@ let ShowProductsHome=()=>{
     const[data,setdata]=useState([]);
     const home = useLocation();
   const receivedData = home.state;
-  console.log(receivedData);
 
     useEffect(() => {
         
@@ -22,7 +21,6 @@ let ShowProductsHome=()=>{
                 }
             })
             .then(data => {
-                console.log(data);
                 setdata(data);
             })
     }, []);
